@@ -14,7 +14,6 @@
 namespace CodeCollab\Form;
 
 use CodeCollab\Http\Request\Request;
-use CodeCollab\Form\Fieldset;
 
 /**
  * Interface for forms
