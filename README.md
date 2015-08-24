@@ -8,6 +8,10 @@ Form package of the CodeCollab project
 
 PHP7+
 
+## Status
+
+No unit tests are available yet until we reach a stable API. The API of this package *will* change so it is adviced to simply not use it.
+
 ## Contributing
 
 [How to contribute][contributing]
