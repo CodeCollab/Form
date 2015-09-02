@@ -44,7 +44,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
      * @covers CodeCollab\Form\Validation\Email::__construct
      * @covers CodeCollab\Form\Validation\Email::validate
      */
-    public function testValidateIsValidWithInvalidEmailAddress()
+    public function testValidateIsInvalidWithInvalidEmailAddress()
     {
         $validator = new Email();
 
