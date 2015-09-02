@@ -7,7 +7,6 @@ use CodeCollab\Form\Validation\Required;
 class RequiredTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers CodeCollab\Form\Validation\Required::__construct
      */
     public function testImplementsCorrectInterface()
     {
@@ -17,7 +16,6 @@ class RequiredTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Required::__construct
      * @covers CodeCollab\Form\Validation\Required::validate
      */
     public function testValidateIsInvalidWithoutValue()
@@ -29,7 +27,6 @@ class RequiredTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Required::__construct
      * @covers CodeCollab\Form\Validation\Required::validate
      */
     public function testValidateIsValidWithValue()

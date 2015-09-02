@@ -7,7 +7,6 @@ use CodeCollab\Form\Validation\Email;
 class EmailTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers CodeCollab\Form\Validation\Email::__construct
      */
     public function testImplementsCorrectInterface()
     {
@@ -17,7 +16,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Email::__construct
      * @covers CodeCollab\Form\Validation\Email::validate
      */
     public function testValidateIsValidWithoutValue()
@@ -29,7 +27,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Email::__construct
      * @covers CodeCollab\Form\Validation\Email::validate
      */
     public function testValidateIsValidWithValidEmailAddress()
@@ -41,7 +38,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Email::__construct
      * @covers CodeCollab\Form\Validation\Email::validate
      */
     public function testValidateIsInvalidWithInvalidEmailAddress()
