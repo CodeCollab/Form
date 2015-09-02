@@ -7,7 +7,6 @@ use CodeCollab\Form\Validation\Generic;
 class GenericTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers CodeCollab\Form\Validation\Generic::__construct
      */
     public function testImplementsCorrectInterface()
     {
@@ -17,7 +16,6 @@ class GenericTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Generic::__construct
      * @covers CodeCollab\Form\Validation\Generic::isValid
      */
     public function testIsValidNotValid()
@@ -34,7 +32,6 @@ class GenericTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Generic::__construct
      * @covers CodeCollab\Form\Validation\Generic::isValid
      */
     public function testIsValidValid()
@@ -45,7 +42,6 @@ class GenericTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Generic::__construct
      * @covers CodeCollab\Form\Validation\Generic::getError
      */
     public function testGetErrorNotValid()
@@ -62,7 +58,6 @@ class GenericTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers CodeCollab\Form\Validation\Generic::__construct
      * @covers CodeCollab\Form\Validation\Generic::getError
      */
     public function testGetErrorValid()
