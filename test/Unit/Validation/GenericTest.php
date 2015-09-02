@@ -4,7 +4,7 @@ namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\Generic;
 
-class GenericTest extends \PHPUnit_Framework_TestCase// implements Validator
+class GenericTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers CodeCollab\Form\Validation\Generic::__construct
