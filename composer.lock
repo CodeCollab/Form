@@ -105,12 +105,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CodeCollab/Http.git",
-                "reference": "708bd0845a63bcbdaf09e8648ca14eed08fa8523"
+                "reference": "ef7424fd6beeacda8ffce3c4fc159751e0ea5e37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CodeCollab/Http/zipball/708bd0845a63bcbdaf09e8648ca14eed08fa8523",
-                "reference": "708bd0845a63bcbdaf09e8648ca14eed08fa8523",
+                "url": "https://api.github.com/repos/CodeCollab/Http/zipball/ef7424fd6beeacda8ffce3c4fc159751e0ea5e37",
+                "reference": "ef7424fd6beeacda8ffce3c4fc159751e0ea5e37",
                 "shasum": ""
             },
             "require": {
@@ -147,7 +147,7 @@
                 "response",
                 "session"
             ],
-            "time": "2015-08-31 15:17:30"
+            "time": "2015-09-03 14:56:03"
         },
         {
             "name": "defuse/php-encryption",
