@@ -15,6 +15,7 @@ namespace CodeCollab\Form;
 
 use CodeCollab\CsrfToken\Token;
 use CodeCollab\Http\Request\Request;
+use CodeCollab\Form\Field\Field;
 
 /**
  * Base form. All forms should inherit from this class
@@ -31,9 +32,9 @@ abstract class BaseForm implements Form, \ArrayAccess
     private $csrfToken;
 
     /**
-     * @var \CodeCollab\Form\Fieldset The field set of this form
+     * @var \CodeCollab\Form\Field\Field[] List of fields in teh form
      */
-    protected $fieldset;
+    protected $fieldset = [];
 
     /**
      * @var \CodeCollab\Http\Request\Request The HTTP request
@@ -44,12 +45,10 @@ abstract class BaseForm implements Form, \ArrayAccess
      * Creates instance
      *
      * @param \CodeCollab\CsrfToken\Token $csrfToken The CSRF token handler
-     * @param \CodeCollab\Form\Fieldset   $fieldset  The field set of this form
      */
-    public function __construct(Token $csrfToken, Fieldset $fieldset)
+    public function __construct(Token $csrfToken)
     {
         $this->csrfToken = $csrfToken;
-        $this->fieldset  = $fieldset;
 
         $this->setupFields();
     }
@@ -60,15 +59,29 @@ abstract class BaseForm implements Form, \ArrayAccess
     abstract protected function setupFields();
 
     /**
+     * Adds a field to the collection
+     *
+     * @param \CodeCollab\Form\Field\Field $field The field to add
+     */
+    protected function addField(Field $field)
+    {
+        $this->fieldset[$field->getName()] = $field;
+    }
+
+    /**
      * Binds the request to the form
      *
-     * @param \CodeCollab\Http\request\Request $request The request object
+     * @param \CodeCollab\Http\Request\Request $request The request object
      */
     public function bindRequest(Request $request)
     {
         $this->request = $request;
 
-        $this->fieldset->bindRequest($request);
+        foreach ($this->request->postArray() as $key => $value) {
+            if (isset($this->fieldset[$key])) {
+                $this->fieldset[$key]->setValue($value);
+            }
+        }
     }
 
     /**
@@ -78,11 +91,17 @@ abstract class BaseForm implements Form, \ArrayAccess
      */
     public function isValid(): bool
     {
-        if (!$this->csrfToken->validate(base64_decode($this->request->get('csrf-token')))) {
-            return false;
+        $valid = true;
+
+        foreach ($this->fieldset as $name => $field) {
+            $field->validate();
+
+            if (!$field->isValid()) {
+                $valid = false;
+            }
         }
 
-        return $this->fieldset->isValid();
+        return $valid;
     }
 
     /**
@@ -94,7 +113,7 @@ abstract class BaseForm implements Form, \ArrayAccess
      */
     public function offsetExists($offset): bool
     {
-        return $this->fieldset->exists($offset);
+        return isset($this->fieldset[$offset]);
     }
 
     /**
@@ -102,7 +121,7 @@ abstract class BaseForm implements Form, \ArrayAccess
      *
      * @param mixed $offset Offset to retrieve
      *
-     * @return null|\CodeCollab\Form\Field The field if it exists
+     * @return null|\CodeCollab\Form\Field\Field The field if it exists
      */
     public function offsetGet($offset)
     {
@@ -110,7 +129,7 @@ abstract class BaseForm implements Form, \ArrayAccess
             return null;
         }
 
-        return $this->fieldset->getField($offset);
+        return $this->fieldset[$offset];
     }
 
     /**
@@ -147,9 +166,9 @@ abstract class BaseForm implements Form, \ArrayAccess
     /**
      * Gets the fieldset of the form
      *
-     * @return \CodeCollab\Form\Fieldset The fieldset
+     * @return array The fieldset
      */
-    public function getFieldset(): Fieldset
+    public function getFieldset(): array
     {
         return $this->fieldset;
     }

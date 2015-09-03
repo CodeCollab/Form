@@ -41,7 +41,7 @@ interface Form
     /**
      * Gets the fieldset of the form
      *
-     * @return \CodeCollab\Form\Fieldset The fieldset
+     * @return array The fieldset
      */
-    public function getFieldset(): Fieldset;
+    public function getFieldset(): array;
 }
