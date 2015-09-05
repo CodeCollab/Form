@@ -29,7 +29,7 @@ abstract class BaseForm implements Form, \ArrayAccess
     /**
      * @var \CodeCollab\CsrfToken\Token The CSRF token handler
      */
-    private $csrfToken;
+    protected $csrfToken;
 
     /**
      * @var \CodeCollab\Form\Field\Field[] List of fields in teh form
