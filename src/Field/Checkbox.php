@@ -35,4 +35,18 @@ class Checkbox extends Generic
     {
         parent::__construct($name, 'checkbox', $validationRules, $defaultValue);
     }
+
+    /**
+     * Gets the field's value
+     *
+     * @return string The value
+     */
+    public function getValue(): string
+    {
+        if ($this->defaultValue === null) {
+            return '';
+        }
+
+        return $this->defaultValue;
+    }
 }
