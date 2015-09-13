@@ -39,7 +39,7 @@ abstract class Generic implements Field
     /**
      * @var array List of validation rules
      */
-    private $validationRules;
+    protected $validationRules;
 
     /**
      * @var string The default value of the field
@@ -49,17 +49,17 @@ abstract class Generic implements Field
     /**
      * @var bool Whether the field has been validated yet
      */
-    private $validated = false;
+    protected $validated = false;
 
     /**
      * @var array List of validation errors
      */
-    private $errors = [];
+    protected $errors = [];
 
     /**
      * @var string The value of the field
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Creates instance
