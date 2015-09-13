@@ -2,40 +2,40 @@
 
 namespace CodeCollabTest\Unit\Form\Field;
 
-use CodeCollab\Form\Field\CsrfToken;
+use CodeCollab\Form\Field\Csrf;
 
-class CsrfTokenTest extends \PHPUnit_Framework_TestCase
+class CsrfTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers CodeCollab\Form\Field\CsrfToken::__construct
+     * @covers CodeCollab\Form\Field\Csrf::__construct
      */
     public function testImplementsCorrectInterface()
     {
-        $field = new CsrfToken('csrffield');
+        $field = new Csrf('csrffield');
 
         $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
         $this->assertSame('csrffield', $field->getName());
-        $this->assertSame('csrfToken', $field->getType());
+        $this->assertSame('csrf', $field->getType());
     }
 
     /**
-     * @covers CodeCollab\Form\Field\CsrfToken::__construct
-     * @covers CodeCollab\Form\Field\CsrfToken::getValue
+     * @covers CodeCollab\Form\Field\Csrf::__construct
+     * @covers CodeCollab\Form\Field\Csrf::getValue
      */
     public function testGetValueEmptyStringWhenNoDefaultValueIsSupplied()
     {
-        $field = new CsrfToken('csrffield');
+        $field = new Csrf('csrffield');
 
         $this->assertSame('', $field->getValue());
     }
 
     /**
-     * @covers CodeCollab\Form\Field\CsrfToken::__construct
-     * @covers CodeCollab\Form\Field\CsrfToken::getValue
+     * @covers CodeCollab\Form\Field\Csrf::__construct
+     * @covers CodeCollab\Form\Field\Csrf::getValue
      */
     public function testGetValueReturnsDefaultValueEvenWhenValueIsManuallySet()
     {
-        $field = new CsrfToken('csrffield', [], 'defaultvalue');
+        $field = new Csrf('csrffield', [], 'defaultvalue');
 
         $field->setValue('custom value');
 

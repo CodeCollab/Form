@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /**
- * CSRF token field
+ * CSRF field
  *
  * PHP version 7.0
  *
@@ -15,14 +15,14 @@
 namespace CodeCollab\Form\Field;
 
 /**
- * CSRF token field
+ * CSRF field
  *
  * @category   CodeCollab
  * @package    Form
  * @subpackage Field
  * @author     Pieter Hordijk <info@pieterhordijk.com>
  */
-class CsrfToken extends Generic
+class Csrf extends Generic
 {
     /**
      * Creates instance
@@ -33,7 +33,7 @@ class CsrfToken extends Generic
      */
     public function __construct(string $name, array $validationRules = [], $defaultValue = null)
     {
-        parent::__construct($name, 'csrfToken', $validationRules, $defaultValue);
+        parent::__construct($name, 'csrf', $validationRules, $defaultValue);
     }
 
     /**
