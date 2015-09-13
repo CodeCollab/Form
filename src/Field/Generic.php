@@ -42,6 +42,16 @@ abstract class Generic implements Field
     private $validationRules;
 
     /**
+     * @var string The default value of the field
+     */
+    protected $defaultValue = null;
+
+    /**
+     * @var bool Whether the field has been validated yet
+     */
+    private $validated = false;
+
+    /**
      * @var array List of validation errors
      */
     private $errors = [];
@@ -64,7 +74,7 @@ abstract class Generic implements Field
         $this->name            = $name;
         $this->type            = $type;
         $this->validationRules = $validationRules;
-        $this->value           = $defaultValue;
+        $this->defaultValue    = $defaultValue;
     }
 
     /**
@@ -120,6 +130,10 @@ abstract class Generic implements Field
      */
     public function getValue(): string
     {
+        if (!$this->validated && $this->defaultValue !== null) {
+            return $this->defaultValue;
+        }
+
         if ($this->value === null) {
             return '';
         }
@@ -139,6 +153,8 @@ abstract class Generic implements Field
                 $this->errors += $rule->getError();
             }
         }
+
+        $this->validated = true;
     }
 
     /**
