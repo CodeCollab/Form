@@ -29,17 +29,4 @@ class CheckboxTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('', $field->getValue());
     }
-
-    /**
-     * @covers CodeCollab\Form\Field\Checkbox::__construct
-     * @covers CodeCollab\Form\Field\Checkbox::getValue
-     */
-    public function testGetValueReturnsDefaultValueEvenWhenValueIsManuallySet()
-    {
-        $field = new Checkbox('checkboxfield', [], 'defaultvalue');
-
-        $field->setValue('custom value');
-
-        $this->assertSame('defaultvalue', $field->getValue());
-    }
 }
