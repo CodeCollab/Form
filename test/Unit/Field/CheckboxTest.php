@@ -17,16 +17,4 @@ class CheckboxTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('checkboxfield', $field->getName());
         $this->assertSame('checkbox', $field->getType());
     }
-
-
-    /**
-     * @covers CodeCollab\Form\Field\Checkbox::__construct
-     * @covers CodeCollab\Form\Field\Checkbox::getValue
-     */
-    public function testGetValueEmptyStringWhenNoDefaultValueIsSupplied()
-    {
-        $field = new Checkbox('checkboxfield');
-
-        $this->assertSame('', $field->getValue());
-    }
 }
