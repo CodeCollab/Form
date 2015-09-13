@@ -99,6 +99,17 @@ class GenericTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers CodeCollab\Form\Field\Generic::__construct
+     * @covers CodeCollab\Form\Field\Generic::getValue
+     */
+    public function testGetValueDefault()
+    {
+        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [], 'thisisdefault']);
+
+        $this->assertSame('thisisdefault', $generic->getValue());
+    }
+
+    /**
+     * @covers CodeCollab\Form\Field\Generic::__construct
      * @covers CodeCollab\Form\Field\Generic::validate
      */
     public function testValidateWithoutValidators()

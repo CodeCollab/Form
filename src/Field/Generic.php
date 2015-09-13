@@ -57,12 +57,14 @@ abstract class Generic implements Field
      * @param string                             $name The name of the field
      * @param string                             $type The type of the field
      * @param \CodeCollab\Validation\Validator[] $validationRules The validation rules
+     * @param string                             $defaultValue    The default value
      */
-    public function __construct(string $name, string $type, array $validationRules)
+    public function __construct(string $name, string $type, array $validationRules = [], $defaultValue = null)
     {
         $this->name            = $name;
         $this->type            = $type;
         $this->validationRules = $validationRules;
+        $this->value           = $defaultValue;
     }
 
     /**

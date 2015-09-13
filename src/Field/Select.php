@@ -29,9 +29,10 @@ class Select extends Generic
      *
      * @param string                             $name            The name of the field
      * @param \CodeCollab\Validation\Validator[] $validationRules The validation rules
+     * @param string                             $defaultValue    The default value
      */
-    public function __construct(string $name, array $validationRules = [])
+    public function __construct(string $name, array $validationRules = [], $defaultValue = null)
     {
-        parent::__construct($name, 'select', $validationRules);
+        parent::__construct($name, 'select', $validationRules, $defaultValue);
     }
 }

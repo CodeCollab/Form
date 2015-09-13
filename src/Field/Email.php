@@ -31,11 +31,12 @@ class Email extends Generic
      *
      * @param string                             $name            The name of the field
      * @param \CodeCollab\Validation\Validator[] $validationRules The validation rules
+     * @param string                             $defaultValue    The default value
      */
-    public function __construct(string $name, array $validationRules = [])
+    public function __construct(string $name, array $validationRules = [], $defaultValue = null)
     {
         $validationRules[] = new EmailValidator;
 
-        parent::__construct($name, 'email', $validationRules);
+        parent::__construct($name, 'email', $validationRules, $defaultValue);
     }
 }
