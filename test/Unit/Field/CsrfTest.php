@@ -41,4 +41,60 @@ class CsrfTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('defaultvalue', $field->getValue());
     }
+
+    /**
+     * @covers CodeCollab\Form\Field\Csrf::__construct
+     * @covers CodeCollab\Form\Field\Csrf::validate
+     */
+    public function testValidateUsesUserSuppliedValueInsteadOfDefault()
+    {
+        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+
+        $validator
+            ->expects($this->once())
+            ->method('validate')
+            ->with($this->equalTo('custom value'))
+        ;
+
+        $validator
+            ->expects($this->once())
+            ->method('isValid')
+            ->willReturn(true)
+        ;
+
+        $field = new Csrf('csrffield', [$validator], 'defaultvalue');
+
+        $field->setValue('custom value');
+
+        $field->validate();
+    }
+
+    /**
+     * @covers CodeCollab\Form\Field\Csrf::__construct
+     * @covers CodeCollab\Form\Field\Csrf::validate
+     */
+    public function testValidateUsesUserSuppliedValueInsteadOfDefaultAlsoWhenAlreadyValidated()
+    {
+        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+
+        $validator
+            ->expects($this->exactly(2))
+            ->method('validate')
+            ->with($this->equalTo('custom value'))
+        ;
+
+        $validator
+            ->expects($this->exactly(2))
+            ->method('isValid')
+            ->willReturn(true)
+        ;
+
+        $field = new Csrf('csrffield', [$validator], 'defaultvalue');
+
+        $field->setValue('custom value');
+
+        $field->validate();
+
+        $field->validate();
+    }
 }

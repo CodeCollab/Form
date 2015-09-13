@@ -49,4 +49,21 @@ class Csrf extends Generic
 
         return $this->defaultValue;
     }
+
+    /**
+     * Validates the field
+     */
+    public function validate()
+    {
+        foreach ($this->validationRules as $rule) {
+            // validate using the user supplied value only
+            $rule->validate($this->value);
+
+            if (!$rule->isValid()) {
+                $this->errors += $rule->getError();
+            }
+        }
+
+        $this->validated = true;
+    }
 }
