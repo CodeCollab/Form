@@ -98,6 +98,16 @@ abstract class Generic implements Field
     }
 
     /**
+     * Gets the default value of the field
+     *
+     * @return string The default value of the field
+     */
+    public function getDefaultValue(): string
+    {
+        return $this->defaultValue ?? '';
+    }
+
+    /**
      * Checks whether the field is required
      *
      * @return bool True when the field is required
