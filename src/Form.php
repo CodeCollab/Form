@@ -32,6 +32,13 @@ interface Form
     public function bindRequest(Request $request);
 
     /**
+     * Checks whether the form has been validated
+     *
+     * @return bool True when the form has been validated
+     */
+    public function isValidated(): bool;
+
+    /**
      * Checks whether the form is valid
      *
      * @return bool True when the form is valid

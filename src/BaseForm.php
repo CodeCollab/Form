@@ -42,6 +42,11 @@ abstract class BaseForm implements Form, \ArrayAccess
     protected $request;
 
     /**
+     * @var bool Whether the form has already been validated
+     */
+    protected $validated = false;
+
+    /**
      * Creates instance
      *
      * @param \CodeCollab\CsrfToken\Token $csrfToken The CSRF token handler
@@ -85,6 +90,16 @@ abstract class BaseForm implements Form, \ArrayAccess
     }
 
     /**
+     * Checks whether the form has been validated
+     *
+     * @return bool True when the form has been validated
+     */
+    public function isValidated(): bool
+    {
+        return $this->validated;
+    }
+
+    /**
      * Checks whether the form is valid
      *
      * @return bool True when the form is valid
@@ -100,6 +115,8 @@ abstract class BaseForm implements Form, \ArrayAccess
                 $valid = false;
             }
         }
+
+        $this->validated = true;
 
         return $valid;
     }

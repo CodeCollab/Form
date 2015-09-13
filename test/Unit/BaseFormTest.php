@@ -90,6 +90,55 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers CodeCollab\Form\BaseForm::__construct
+     * @covers CodeCollab\Form\BaseForm::isValidated
+     */
+    public function testIsValidatedNotValidated()
+    {
+        $token = $this->getMock('CodeCollab\CsrfToken\Token');
+
+        $form = (new class($token) extends BaseForm {
+            private $field;
+
+            public function __construct($token) {
+                parent::__construct($token);
+            }
+
+            protected function setupFields() {
+                // empty on purpose
+            }
+        });
+
+        $this->assertFalse($form->isValidated());
+    }
+
+    /**
+     * @covers CodeCollab\Form\BaseForm::__construct
+     * @covers CodeCollab\Form\BaseForm::isValidated
+     * @covers CodeCollab\Form\BaseForm::isValid
+     */
+    public function testIsValidatedValidated()
+    {
+        $token = $this->getMock('CodeCollab\CsrfToken\Token');
+
+        $form = (new class($token) extends BaseForm {
+            private $field;
+
+            public function __construct($token) {
+                parent::__construct($token);
+            }
+
+            protected function setupFields() {
+                // empty on purpose
+            }
+        });
+
+        $form->isValid();
+
+        $this->assertTrue($form->isValidated());
+    }
+
+    /**
+     * @covers CodeCollab\Form\BaseForm::__construct
      * @covers CodeCollab\Form\BaseForm::addField
      * @covers CodeCollab\Form\BaseForm::isValid
      */
