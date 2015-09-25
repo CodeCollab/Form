@@ -32,9 +32,9 @@ abstract class BaseForm implements Form, \ArrayAccess
     protected $csrfToken;
 
     /**
-     * @var \CodeCollab\Form\Field\Field[] List of fields in teh form
+     * @var \CodeCollab\Form\Field\Field[] List of fields in the form
      */
-    protected $fieldset = [];
+    private $fieldset = [];
 
     /**
      * @var \CodeCollab\Http\Request\Request The HTTP request
