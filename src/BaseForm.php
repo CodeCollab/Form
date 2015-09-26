@@ -47,6 +47,11 @@ abstract class BaseForm implements Form, \ArrayAccess
     protected $validated = false;
 
     /**
+     * @var bool Whether the form is valid
+     */
+    protected $valid = true;
+
+    /**
      * Creates instance
      *
      * @param \CodeCollab\CsrfToken\Token $csrfToken The CSRF token handler
@@ -90,6 +95,22 @@ abstract class BaseForm implements Form, \ArrayAccess
     }
 
     /**
+     * Validates the form
+     */
+    public function validate()
+    {
+        foreach ($this->fieldset as $name => $field) {
+            $field->validate();
+
+            if (!$field->isValid()) {
+                $this->valid = false;
+            }
+        }
+
+        $this->validated = true;
+    }
+
+    /**
      * Checks whether the form has been validated
      *
      * @return bool True when the form has been validated
@@ -106,19 +127,7 @@ abstract class BaseForm implements Form, \ArrayAccess
      */
     public function isValid(): bool
     {
-        $valid = true;
-
-        foreach ($this->fieldset as $name => $field) {
-            $field->validate();
-
-            if (!$field->isValid()) {
-                $valid = false;
-            }
-        }
-
-        $this->validated = true;
-
-        return $valid;
+        return $this->valid;
     }
 
     /**

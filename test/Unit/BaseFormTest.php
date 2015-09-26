@@ -114,7 +114,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers CodeCollab\Form\BaseForm::__construct
      * @covers CodeCollab\Form\BaseForm::isValidated
-     * @covers CodeCollab\Form\BaseForm::isValid
+     * @covers CodeCollab\Form\BaseForm::validate
      */
     public function testIsValidatedValidated()
     {
@@ -132,7 +132,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
             }
         });
 
-        $form->isValid();
+        $form->validate();
 
         $this->assertTrue($form->isValidated());
     }
@@ -140,6 +140,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers CodeCollab\Form\BaseForm::__construct
      * @covers CodeCollab\Form\BaseForm::addField
+     * @covers CodeCollab\Form\BaseForm::validate
      * @covers CodeCollab\Form\BaseForm::isValid
      */
     public function testIsValidNotValid()
@@ -178,12 +179,15 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
             }
         });
 
+        $form->validate();
+
         $this->assertFalse($form->isValid());
     }
 
     /**
      * @covers CodeCollab\Form\BaseForm::__construct
      * @covers CodeCollab\Form\BaseForm::addField
+     * @covers CodeCollab\Form\BaseForm::validate
      * @covers CodeCollab\Form\BaseForm::isValid
      */
     public function testIsValidValid()
@@ -221,6 +225,8 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
                 \PHPUnit_Framework_Assert::assertNull($this->addField($this->field));
             }
         });
+
+        $form->validate();
 
         $this->assertTrue($form->isValid());
     }
