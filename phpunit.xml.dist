@@ -20,6 +20,9 @@
         <testsuite name="Unit">
             <directory>test/Unit</directory>
         </testsuite>
+        <testsuite name="Integration">
+            <directory>test/Integration</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist>
