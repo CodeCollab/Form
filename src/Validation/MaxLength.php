@@ -48,6 +48,6 @@ class MaxLength extends Generic
             return;
         }
 
-        $this->error['maxlength'] = [$this->maximumLength];
+        $this->error['maxlength.%'] = [$this->maximumLength];
     }
 }

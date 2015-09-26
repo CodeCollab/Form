@@ -48,6 +48,6 @@ class MinLength extends Generic
             return;
         }
 
-        $this->error['minlength'] = [$this->minimumLength];
+        $this->error['minlength.%'] = [$this->minimumLength];
     }
 }

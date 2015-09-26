@@ -48,6 +48,6 @@ class Max extends Generic
             return;
         }
 
-        $this->error['max'] = [$this->maximumValue];
+        $this->error['max.%'] = [$this->maximumValue];
     }
 }

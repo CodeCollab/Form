@@ -48,6 +48,6 @@ class Min extends Generic
             return;
         }
 
-        $this->error['min'] = [$this->minimumValue];
+        $this->error['min.%'] = [$this->minimumValue];
     }
 }
