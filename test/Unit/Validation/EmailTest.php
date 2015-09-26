@@ -46,5 +46,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->validate('info'));
         $this->assertFalse($validator->isValid());
+        $this->assertSame(['type.email' => []], $validator->getError());
     }
 }

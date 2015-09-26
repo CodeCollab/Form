@@ -62,5 +62,6 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->validate('fo'));
         $this->assertFalse($validator->isValid());
+        $this->assertSame(['minlength.%' => [3]], $validator->getError());
     }
 }

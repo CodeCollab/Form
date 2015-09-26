@@ -62,5 +62,6 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->validate('foo'));
         $this->assertFalse($validator->isValid());
+        $this->assertSame(['maxlength.%' => [1]], $validator->getError());
     }
 }

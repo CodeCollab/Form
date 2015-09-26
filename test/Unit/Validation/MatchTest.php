@@ -50,5 +50,6 @@ class MatchTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->validate('foo'));
         $this->assertFalse($validator->isValid());
+        $this->assertSame(['match' => ['thevalue']], $validator->getError());
     }
 }

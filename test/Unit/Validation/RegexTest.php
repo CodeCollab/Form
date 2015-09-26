@@ -50,5 +50,6 @@ class RegexTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->validate('bar'));
         $this->assertFalse($validator->isValid());
+        $this->assertSame(['regex' => []], $validator->getError());
     }
 }

@@ -24,6 +24,7 @@ class RequiredTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->validate(''));
         $this->assertFalse($validator->isValid());
+        $this->assertSame(['required' => []], $validator->getError());
     }
 
     /**

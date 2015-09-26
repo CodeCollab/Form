@@ -62,5 +62,6 @@ class MaxTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->validate('2'));
         $this->assertFalse($validator->isValid());
+        $this->assertSame(['max.%' => [1.0]], $validator->getError());
     }
 }

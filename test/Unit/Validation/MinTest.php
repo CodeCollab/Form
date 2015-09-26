@@ -62,5 +62,6 @@ class MinTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->validate('1'));
         $this->assertFalse($validator->isValid());
+        $this->assertSame(['min.%' => [2.0]], $validator->getError());
     }
 }
