@@ -198,6 +198,10 @@ abstract class Generic implements Field
      */
     public function getErrorData(): array
     {
-        return $this->errors;
+        if ($this->isValid()) {
+            return [];
+        }
+
+        return reset($this->errors);
     }
 }

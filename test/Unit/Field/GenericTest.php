@@ -386,7 +386,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
 
         $generic->validate();
 
-        $this->assertSame(['the.error' => []], $generic->getErrorData());
+        $this->assertSame([], $generic->getErrorData());
     }
 
     /**
