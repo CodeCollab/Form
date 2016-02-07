@@ -19,7 +19,7 @@
     "require": {
         "php": ">=7.0-dev",
         "codecollab/http": "dev-master",
-        "codecollab/csrf-token": "dev-master"
+        "codecollab/csrf-token": "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^5"
