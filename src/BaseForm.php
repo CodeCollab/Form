@@ -34,7 +34,7 @@ abstract class BaseForm implements Form, \ArrayAccess
     /**
      * @var \CodeCollab\Form\Field\Field[] List of fields in the form
      */
-    private $fieldset = [];
+    protected $fieldset = [];
 
     /**
      * @var \CodeCollab\Http\Request\Request The HTTP request

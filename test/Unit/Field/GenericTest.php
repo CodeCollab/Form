@@ -297,6 +297,26 @@ class GenericTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers CodeCollab\Form\Field\Generic::__construct
+     * @covers CodeCollab\Form\Field\Generic::validate
+     * @covers CodeCollab\Form\Field\Generic::isValid
+     */
+    public function testIsValidNotValidCustomValidation()
+    {
+        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+
+        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+
+        $generic->invalidate('custom', ['foo' => 'bar']);
+
+        $generic->validate();
+
+        $this->assertFalse($generic->isValid());
+        $this->assertSame('custom', $generic->getErrorType());
+        $this->assertSame(['foo' => 'bar'], $generic->getErrorData());
+    }
+
+    /**
+     * @covers CodeCollab\Form\Field\Generic::__construct
      * @covers CodeCollab\Form\Field\Generic::isValid
      */
     public function testIsValidValid()

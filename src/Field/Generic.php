@@ -168,6 +168,19 @@ abstract class Generic implements Field
     }
 
     /**
+     * Invalidates the field
+     *
+     * Useful when there is a need to do custom field validation. E.g. from inside a form
+     *
+     * @param string $type The error type
+     * @param array  $data The (optional) extra data of the error
+     */
+    public function invalidate(string $type, array $data = [])
+    {
+        $this->errors += [$type => $data];
+    }
+
+    /**
      * Checks whether there were validation errors
      *
      * @return bool True when there were validation errors
