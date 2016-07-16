@@ -12,16 +12,15 @@
             "role": "Lead"
         }
     ],
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {"CodeCollab\\Form\\": "src/"}
     },
     "require": {
-        "php": ">=7.0-dev",
-        "codecollab/http": "dev-master",
-        "codecollab/csrf-token": "1.0.*"
+        "php": "^7",
+        "codecollab/http": "^1",
+        "codecollab/csrf-token": "^2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5"
+        "phpunit/phpunit": "^5.4"
     }
 }
