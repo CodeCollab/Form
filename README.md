@@ -8,6 +8,16 @@ Form package of the CodeCollab project
 
 PHP7+
 
+## Installation
+
+Include the library in your project using composer:
+
+    {
+        "require-dev": {
+            "codecollab/form": "^1"
+        }
+    }
+
 ## Status
 
 No unit tests are available yet until we reach a stable API. The API of this package *will* change so it is adviced to simply not use it.
@@ -19,6 +29,10 @@ No unit tests are available yet until we reach a stable API. The API of this pac
 ## License
 
 [MIT][mit]
+
+## Security issues
+
+If you found a security issue please contact directly by mail instead of using the issue tracker at codecollab-security@pieterhordijk.com
 
 [contributing]: https://github.com/CodeCollab/Form/blob/master/CONTRIBUTING.md
 [mit]: http://spdx.org/licenses/MIT

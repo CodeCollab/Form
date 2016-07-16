@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5393ef23deb0724ff02f43ae36269b28",
-    "content-hash": "7f1b02df2245e65e2149982e68e1d561",
+    "hash": "e7cee1daa987ac257b05e167c01302a2",
+    "content-hash": "2b3645a1b8db8dc4cb504a3aa261a2e1",
     "packages": [
         {
             "name": "codecollab/csrf-token",
