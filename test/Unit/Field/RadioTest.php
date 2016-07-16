@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Field;
 
 use CodeCollab\Form\Field\Radio;
+use CodeCollab\Form\Field\Field;
 
 class RadioTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class RadioTest extends \PHPUnit_Framework_TestCase
     {
         $field = new Radio('radiofield');
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
+        $this->assertInstanceOf(Field::class, $field);
         $this->assertSame('radiofield', $field->getName());
         $this->assertSame('radio', $field->getType());
     }

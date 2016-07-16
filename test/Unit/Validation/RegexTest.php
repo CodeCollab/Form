@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\Regex;
+use CodeCollab\Form\Validation\Validator;
 
 class RegexTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class RegexTest extends \PHPUnit_Framework_TestCase
     {
         $validator = new Regex('/foo/');
 
-        $this->assertInstanceOf('CodeCollab\Form\Validation\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     /**

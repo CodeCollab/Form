@@ -26,6 +26,8 @@ class Required extends Generic
 {
     /**
      * Validates a form field value
+     *
+     * @param string $value The value
      */
     public function validate(string $value)
     {

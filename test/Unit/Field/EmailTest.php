@@ -3,6 +3,7 @@
 namespace CodeCollab\Form\Field;
 
 use CodeCollab\Form\Field\Email;
+use CodeCollab\Form\Field\Field;
 
 class EmailTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     {
         $field = new Email('emailfield');
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
+        $this->assertInstanceOf(Field::class, $field);
         $this->assertSame('emailfield', $field->getName());
         $this->assertSame('email', $field->getType());
     }

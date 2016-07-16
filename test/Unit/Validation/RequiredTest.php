@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\Required;
+use CodeCollab\Form\Validation\Validator;
 
 class RequiredTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +13,7 @@ class RequiredTest extends \PHPUnit_Framework_TestCase
     {
         $validator = new Required();
 
-        $this->assertInstanceOf('CodeCollab\Form\Validation\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     /**

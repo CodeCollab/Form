@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Field;
 
 use CodeCollab\Form\Field\Checkbox;
+use CodeCollab\Form\Field\Field;
 
 class CheckboxTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class CheckboxTest extends \PHPUnit_Framework_TestCase
     {
         $field = new Checkbox('checkboxfield');
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
+        $this->assertInstanceOf(Field::class, $field);
         $this->assertSame('checkboxfield', $field->getName());
         $this->assertSame('checkbox', $field->getType());
     }

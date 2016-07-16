@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Field;
 
 use CodeCollab\Form\Field\Textarea;
+use CodeCollab\Form\Field\Field;
 
 class TextareaTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class TextareaTest extends \PHPUnit_Framework_TestCase
     {
         $field = new Textarea('textareafield');
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
+        $this->assertInstanceOf(Field::class, $field);
         $this->assertSame('textareafield', $field->getName());
         $this->assertSame('textarea', $field->getType());
     }

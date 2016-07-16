@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\Email;
+use CodeCollab\Form\Validation\Validator;
 
 class EmailTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +13,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     {
         $validator = new Email();
 
-        $this->assertInstanceOf('CodeCollab\Form\Validation\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     /**

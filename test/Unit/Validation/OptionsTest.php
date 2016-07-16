@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\Options;
+use CodeCollab\Form\Validation\Validator;
 
 class OptionsTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
     {
         $validator = new Options([]);
 
-        $this->assertInstanceOf('CodeCollab\Form\Validation\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     /**

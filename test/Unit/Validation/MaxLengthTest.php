@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\MaxLength;
+use CodeCollab\Form\Validation\Validator;
 
 class MaxLengthTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
     {
         $validator = new MaxLength(1);
 
-        $this->assertInstanceOf('CodeCollab\Form\Validation\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     /**

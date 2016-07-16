@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Field;
 
 use CodeCollab\Form\Field\Text;
+use CodeCollab\Form\Field\Field;
 
 class TextTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
     {
         $field = new Text('textfield');
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
+        $this->assertInstanceOf(Field::class, $field);
         $this->assertSame('textfield', $field->getName());
         $this->assertSame('text', $field->getType());
     }

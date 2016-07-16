@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Field;
 
 use CodeCollab\Form\Field\Csrf;
+use CodeCollab\Form\Field\Field;
 
 class CsrfTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class CsrfTest extends \PHPUnit_Framework_TestCase
     {
         $field = new Csrf('csrffield');
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
+        $this->assertInstanceOf(Field::class, $field);
         $this->assertSame('csrffield', $field->getName());
         $this->assertSame('csrf', $field->getType());
     }
@@ -48,7 +49,7 @@ class CsrfTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateUsesUserSuppliedValueInsteadOfDefault()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock('CodeCollab\Form\Validation\Validator');
 
         $validator
             ->expects($this->once())
@@ -75,7 +76,7 @@ class CsrfTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateUsesUserSuppliedValueInsteadOfDefaultAlsoWhenAlreadyValidated()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock('CodeCollab\Form\Validation\Validator');
 
         $validator
             ->expects($this->exactly(2))

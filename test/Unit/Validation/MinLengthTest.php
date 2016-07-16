@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\MinLength;
+use CodeCollab\Form\Validation\Validator;
 
 class MinLengthTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
     {
         $validator = new MinLength(1);
 
-        $this->assertInstanceOf('CodeCollab\Form\Validation\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     /**

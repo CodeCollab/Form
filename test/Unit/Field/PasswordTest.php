@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Field;
 
 use CodeCollab\Form\Field\Password;
+use CodeCollab\Form\Field\Field;
 
 class PasswordTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class PasswordTest extends \PHPUnit_Framework_TestCase
     {
         $field = new Password('passwordfield');
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
+        $this->assertInstanceOf(Field::class, $field);
         $this->assertSame('passwordfield', $field->getName());
         $this->assertSame('password', $field->getType());
     }

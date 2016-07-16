@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\Match;
+use CodeCollab\Form\Validation\Validator;
 
 class MatchTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class MatchTest extends \PHPUnit_Framework_TestCase
     {
         $validator = new Match('thevalue');
 
-        $this->assertInstanceOf('CodeCollab\Form\Validation\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     /**

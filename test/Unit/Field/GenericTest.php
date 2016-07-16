@@ -4,6 +4,7 @@ namespace CodeCollabTest\Unit\Form\Field;
 
 use CodeCollab\Form\Field\Generic;
 use CodeCollab\Form\Validation\Required;
+use CodeCollab\Form\Validation\Validator;
 
 class GenericTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +13,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testImplementsCorrectInterface()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', [], '', false);
+        $generic = $this->getMockForAbstractClass(Generic::class, [], '', false);
 
         $this->assertInstanceOf('CodeCollab\Form\Field\Field', $generic);
     }
@@ -23,7 +24,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', []]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', []]);
 
         $this->assertSame('name', $generic->getName());
     }
@@ -34,7 +35,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetType()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', []]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', []]);
 
         $this->assertSame('type', $generic->getType());
     }
@@ -45,7 +46,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetDefaultValueWhenNotSet()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', []]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', []]);
 
         $this->assertSame('', $generic->getDefaultValue());
     }
@@ -56,7 +57,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetDefaultValueSet()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [], 'defaultvalue']);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [], 'defaultvalue']);
 
         $this->assertSame('defaultvalue', $generic->getDefaultValue());
     }
@@ -67,7 +68,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsRequiredWhenRequiredRuleIsAdded()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [new Required]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [new Required]]);
 
         $this->assertTrue($generic->isRequired());
     }
@@ -78,7 +79,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsRequiredWhenRequiredRuleIsNotAdded()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', []]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', []]);
 
         $this->assertFalse($generic->isRequired());
     }
@@ -89,7 +90,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetValue()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', []]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', []]);
 
         $this->assertNull($generic->setValue('foobar'));
     }
@@ -100,7 +101,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetValueDefaultWhenNotYetValidated()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [], 'default']);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [], 'default']);
 
         $this->assertSame('default', $generic->getValue());
     }
@@ -112,7 +113,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetValueDoesntReturnDefaultWhenValidated()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [], 'default']);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [], 'default']);
 
         $generic->validate();
 
@@ -125,7 +126,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetValueEmptyStringOnNullValue()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', []]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', []]);
 
         $this->assertSame('', $generic->getValue());
     }
@@ -137,7 +138,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetValueFilledIn()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', []]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', []]);
 
         $generic->setValue('foobar');
 
@@ -150,7 +151,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetValueDefault()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [], 'thisisdefault']);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [], 'thisisdefault']);
 
         $this->assertSame('thisisdefault', $generic->getValue());
     }
@@ -161,7 +162,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateWithoutValidators()
     {
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', []]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', []]);
 
         $this->assertNull($generic->validate());
     }
@@ -172,7 +173,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateWithValidatorIsValid()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
         $validator
             ->expects($this->once())
@@ -191,7 +192,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
             ->method('getError')
         ;
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $this->assertNull($generic->validate());
     }
@@ -202,7 +203,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateWithValidatorIsNotValid()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
         $validator
             ->expects($this->once())
@@ -222,7 +223,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
             ->willReturn(['the.error' => []])
         ;
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $this->assertNull($generic->validate());
     }
@@ -235,7 +236,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateWithValidatorIsValidWithValue()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
         $validator
             ->expects($this->once())
@@ -254,7 +255,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
             ->method('getError')
         ;
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $generic->setValue('foobar');
 
@@ -268,7 +269,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidNotValid()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
         $validator
             ->expects($this->once())
@@ -288,7 +289,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
             ->willReturn(['the.error' => []])
         ;
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $generic->validate();
 
@@ -302,9 +303,9 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidNotValidCustomValidation()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $generic->invalidate('custom', ['foo' => 'bar']);
 
@@ -321,9 +322,9 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidValid()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $this->assertTrue($generic->isValid());
     }
@@ -335,7 +336,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetErrorTypeReturnsCorrectType()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->getMock(Validator::class);
 
         $validator
             ->expects($this->once())
@@ -355,7 +356,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
             ->willReturn(['the.error' => []])
         ;
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $generic->validate();
 
@@ -368,9 +369,9 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetErrorTypeWhenValid()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $this->assertSame('', $generic->getErrorType());
     }
@@ -382,7 +383,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetErrorDataReturnsErrorsWhenNotValid()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
         $validator
             ->expects($this->once())
@@ -402,7 +403,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
             ->willReturn(['the.error' => []])
         ;
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $generic->validate();
 
@@ -415,9 +416,9 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetErrorDataWhenValid()
     {
-        $validator = $this->getMock('CodeCollab\Form\Validation\Validator');
+        $validator = $this->createMock(Validator::class);
 
-        $generic = $this->getMockForAbstractClass('CodeCollab\Form\Field\Generic', ['name', 'type', [$validator]]);
+        $generic = $this->getMockForAbstractClass(Generic::class, ['name', 'type', [$validator]]);
 
         $this->assertSame([], $generic->getErrorData());
     }

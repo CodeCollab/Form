@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Field;
 
 use CodeCollab\Form\Field\Select;
+use CodeCollab\Form\Field\Field;
 
 class SelectTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase
     {
         $field = new Select('selectfield');
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $field);
+        $this->assertInstanceOf(Field::class, $field);
         $this->assertSame('selectfield', $field->getName());
         $this->assertSame('select', $field->getType());
     }

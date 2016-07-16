@@ -3,6 +3,7 @@
 namespace CodeCollabTest\Unit\Form\Validation;
 
 use CodeCollab\Form\Validation\Generic;
+use CodeCollab\Form\Validation\Validator;
 
 class GenericTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,9 +11,9 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testImplementsCorrectInterface()
     {
-        $validator = $this->getMockForAbstractClass('CodeCollab\Form\Validation\Generic');
+        $validator = $this->getMockForAbstractClass(Generic::class);
 
-        $this->assertInstanceOf('CodeCollab\Form\Validation\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     /**
@@ -36,7 +37,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidValid()
     {
-        $validator = $this->getMockForAbstractClass('CodeCollab\Form\Validation\Generic');
+        $validator = $this->getMockForAbstractClass(Generic::class);
 
         $this->assertTrue($validator->isValid());
     }
@@ -62,7 +63,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetErrorValid()
     {
-        $validator = $this->getMockForAbstractClass('CodeCollab\Form\Validation\Generic');
+        $validator = $this->getMockForAbstractClass(Generic::class);
 
         $this->assertSame([], $validator->getError());
     }

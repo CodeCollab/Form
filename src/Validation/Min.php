@@ -41,6 +41,8 @@ class Min extends Generic
 
     /**
      * Validates a form field value
+     *
+     * @param string $value The value to validate
      */
     public function validate(string $value)
     {
