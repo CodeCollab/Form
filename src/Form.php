@@ -50,5 +50,5 @@ interface Form
      *
      * @return array The fieldset
      */
-    public function getFieldset(): array;
+    public function getFieldSet(): array;
 }

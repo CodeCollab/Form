@@ -3,6 +3,11 @@
 namespace CodeCollabTest\Unit\Form;
 
 use CodeCollab\Form\BaseForm;
+use CodeCollab\Form\Form;
+use CodeCollab\CsrfToken\Token;
+use CodeCollab\Form\Field\Field;
+use CodeCollab\Http\Request\Request;
+use CodeCollab\Form\OutOfScopeException;
 
 class BaseFormTest extends \PHPUnit_Framework_TestCase
 {
@@ -11,10 +16,10 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testImplementsCorrectInterfaces()
     {
-        $form = $this->getMockForAbstractClass('CodeCollab\Form\BaseForm', [], '', false);
+        $form = $this->getMockForAbstractClass(BaseForm::class, [], '', false);
 
-        $this->assertInstanceOf('CodeCollab\Form\Form', $form);
-        $this->assertInstanceOf('ArrayAccess', $form);
+        $this->assertInstanceOf(Form::class, $form);
+        $this->assertInstanceOf(\ArrayAccess::class, $form);
     }
 
     /**
@@ -23,8 +28,8 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddField()
     {
-        $token = $this->getMock('CodeCollab\CsrfToken\Token');
-        $field = $this->getMock('CodeCollab\Form\Field\Field');
+        $token = $this->createMock(Token::class);
+        $field = $this->createMock(Field::class);
 
         $form = (new class($token, $field) extends BaseForm {
             private $field;
@@ -48,8 +53,8 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testBindRequest()
     {
-        $token = $this->getMock('CodeCollab\CsrfToken\Token');
-        $field = $this->getMock('CodeCollab\Form\Field\Field');
+        $token = $this->createMock(Token::class);
+        $field = $this->createMock(Field::class);
 
         $field
             ->expects($this->once())
@@ -63,7 +68,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo('testvalue'))
         ;
 
-        $request = $this->getMock('CodeCollab\Http\Request\Request', [], [], '', false);
+        $request = $this->createMock(Request::class, [], [], '', false);
 
         $request
             ->expects($this->once())
@@ -94,7 +99,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidatedNotValidated()
     {
-        $token = $this->getMock('CodeCollab\CsrfToken\Token');
+        $token = $this->createMock(Token::class);
 
         $form = (new class($token) extends BaseForm {
             private $field;
@@ -118,7 +123,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidatedValidated()
     {
-        $token = $this->getMock('CodeCollab\CsrfToken\Token');
+        $token = $this->createMock(Token::class);
 
         $form = (new class($token) extends BaseForm {
             private $field;
@@ -145,8 +150,8 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidNotValid()
     {
-        $token = $this->getMock('CodeCollab\CsrfToken\Token');
-        $field = $this->getMock('CodeCollab\Form\Field\Field');
+        $token = $this->createMock(Token::class);
+        $field = $this->createMock(Field::class);
 
         $field
             ->expects($this->once())
@@ -192,8 +197,8 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValidValid()
     {
-        $token = $this->getMock('CodeCollab\CsrfToken\Token');
-        $field = $this->getMock('CodeCollab\Form\Field\Field');
+        $token = $this->createMock(Token::class);
+        $field = $this->createMock(Field::class);
 
         $field
             ->expects($this->once())
@@ -237,7 +242,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testOffsetExistsDoesntExist()
     {
-        $form = $this->getMockForAbstractClass('CodeCollab\Form\BaseForm', [], '', false);
+        $form = $this->getMockForAbstractClass(BaseForm::class, [], '', false);
 
         $this->assertFalse($form->offsetExists('foobar'));
     }
@@ -248,8 +253,8 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testOffsetExistsDoesExist()
     {
-        $token = $this->getMock('CodeCollab\CsrfToken\Token');
-        $field = $this->getMock('CodeCollab\Form\Field\Field');
+        $token = $this->createMock(Token::class);
+        $field = $this->createMock(Field::class);
 
         $field
             ->expects($this->once())
@@ -281,7 +286,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testOffsetGetWhenNotSet()
     {
-        $form = $this->getMockForAbstractClass('CodeCollab\Form\BaseForm', [], '', false);
+        $form = $this->getMockForAbstractClass(BaseForm::class, [], '', false);
 
         $this->assertNull($form->offsetGet('foobar'));
     }
@@ -293,8 +298,8 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testOffsetGetDoesExist()
     {
-        $token = $this->getMock('CodeCollab\CsrfToken\Token');
-        $field = $this->getMock('CodeCollab\Form\Field\Field');
+        $token = $this->createMock(Token::class);
+        $field = $this->createMock(Field::class);
 
         $field
             ->expects($this->once())
@@ -316,7 +321,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
             }
         });
 
-        $this->assertInstanceOf('CodeCollab\Form\Field\Field', $form->offsetGet('testfield'));
+        $this->assertInstanceOf(Field::class, $form->offsetGet('testfield'));
     }
 
     /**
@@ -325,9 +330,10 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testOffsetSetThrowsWhenCalled()
     {
-        $form = $this->getMockForAbstractClass('CodeCollab\Form\BaseForm', [], '', false);
+        $form = $this->getMockForAbstractClass(BaseForm::class, [], '', false);
 
-        $this->setExpectedException('CodeCollab\Form\OutOfScopeException');
+        $this->expectException(OutOfScopeException::class);
+        $this->expectExceptionMessage('Not allowed to set new data directly.');
 
         $form->offsetSet('offset', 'value');
     }
@@ -338,9 +344,10 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testOffsetUnsetThrowsWhenCalled()
     {
-        $form = $this->getMockForAbstractClass('CodeCollab\Form\BaseForm', [], '', false);
+        $form = $this->getMockForAbstractClass(BaseForm::class, [], '', false);
 
-        $this->setExpectedException('CodeCollab\Form\OutOfScopeException');
+        $this->expectException(OutOfScopeException::class);
+        $this->expectExceptionMessage('Not allowed to use unset directly.');
 
         $form->offsetUnset('offset');
     }
@@ -351,7 +358,7 @@ class BaseFormTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetFieldset()
     {
-        $form = $this->getMockForAbstractClass('CodeCollab\Form\BaseForm', [], '', false);
+        $form = $this->getMockForAbstractClass(BaseForm::class, [], '', false);
 
         $this->assertSame([], $form->getFieldset());
     }

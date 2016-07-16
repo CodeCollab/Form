@@ -34,7 +34,7 @@ abstract class BaseForm implements Form, \ArrayAccess
     /**
      * @var \CodeCollab\Form\Field\Field[] List of fields in the form
      */
-    protected $fieldset = [];
+    protected $fieldSet = [];
 
     /**
      * @var \CodeCollab\Http\Request\Request The HTTP request
@@ -75,7 +75,7 @@ abstract class BaseForm implements Form, \ArrayAccess
      */
     protected function addField(Field $field)
     {
-        $this->fieldset[$field->getName()] = $field;
+        $this->fieldSet[$field->getName()] = $field;
     }
 
     /**
@@ -88,8 +88,8 @@ abstract class BaseForm implements Form, \ArrayAccess
         $this->request = $request;
 
         foreach ($this->request->postArray() as $key => $value) {
-            if (isset($this->fieldset[$key])) {
-                $this->fieldset[$key]->setValue($value);
+            if (isset($this->fieldSet[$key])) {
+                $this->fieldSet[$key]->setValue($value);
             }
         }
     }
@@ -99,7 +99,7 @@ abstract class BaseForm implements Form, \ArrayAccess
      */
     public function validate()
     {
-        foreach ($this->fieldset as $name => $field) {
+        foreach ($this->fieldSet as $name => $field) {
             $field->validate();
 
             if (!$field->isValid()) {
@@ -139,7 +139,7 @@ abstract class BaseForm implements Form, \ArrayAccess
      */
     public function offsetExists($offset): bool
     {
-        return isset($this->fieldset[$offset]);
+        return isset($this->fieldSet[$offset]);
     }
 
     /**
@@ -155,7 +155,7 @@ abstract class BaseForm implements Form, \ArrayAccess
             return null;
         }
 
-        return $this->fieldset[$offset];
+        return $this->fieldSet[$offset];
     }
 
     /**
@@ -167,11 +167,11 @@ abstract class BaseForm implements Form, \ArrayAccess
      * @param mixed $offset The offset to assign the value to
      * @param mixed $value  The value to set
      *
-     * @throws \CodeCollab\Form\OufOfScopeException When trying to use this method
+     * @throws \CodeCollab\Form\OutOfScopeException When trying to use this method
      */
     public function offsetSet($offset, $value)
     {
-        throw new OutOfScopeException();
+        throw new OutOfScopeException('Not allowed to set new data directly.');
     }
 
     /**
@@ -182,20 +182,20 @@ abstract class BaseForm implements Form, \ArrayAccess
      *
      * @param mixed $offset The offset to unset
      *
-     * @throws \CodeCollab\Form\OufOfScopeException When trying to use this method
+     * @throws \CodeCollab\Form\OutOfScopeException When trying to use this method
      */
     public function offsetUnset($offset)
     {
-        throw new OutOfScopeException();
+        throw new OutOfScopeException('Not allowed to use unset directly.');
     }
 
     /**
-     * Gets the fieldset of the form
+     * Gets the fieldSet of the form
      *
-     * @return array The fieldset
+     * @return array The fieldSet
      */
-    public function getFieldset(): array
+    public function getFieldSet(): array
     {
-        return $this->fieldset;
+        return $this->fieldSet;
     }
 }

@@ -336,7 +336,7 @@ class GenericTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetErrorTypeReturnsCorrectType()
     {
-        $validator = $this->getMock(Validator::class);
+        $validator = $this->createMock(Validator::class);
 
         $validator
             ->expects($this->once())
