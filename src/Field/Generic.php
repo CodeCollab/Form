@@ -64,10 +64,10 @@ abstract class Generic implements Field
     /**
      * Creates instance
      *
-     * @param string                             $name The name of the field
-     * @param string                             $type The type of the field
-     * @param \CodeCollab\Validation\Validator[] $validationRules The validation rules
-     * @param string                             $defaultValue    The default value
+     * @param string                                  $name The name of the field
+     * @param string                                  $type The type of the field
+     * @param \CodeCollab\Form\Validation\Validator[] $validationRules The validation rules
+     * @param string                                  $defaultValue    The default value
      */
     public function __construct(string $name, string $type, array $validationRules = [], $defaultValue = null)
     {
