@@ -46,7 +46,7 @@ class Options extends Generic
      */
     public function validate(string $value)
     {
-        if (!$value || !in_array($value, $this->values, true)) {
+        if (!$value || in_array($value, $this->values, true)) {
             return;
         }
 
