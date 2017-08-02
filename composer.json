@@ -1,7 +1,6 @@
 {
     "name": "codecollab/form",
     "description": "Form package of the CodeCollab project",
-    "version": "1.0.0",
     "type": "library",
     "keywords": ["codecollab", "form"],
     "homepage": "https://github.com/CodeCollab/Form",
